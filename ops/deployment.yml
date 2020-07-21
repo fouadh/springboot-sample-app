@@ -19,7 +19,7 @@ spec:
         app: springboot-sample-app
     spec:
       containers:
-      - image: fouadhamdi/springboot-hello:1.0.0
-        name: springboot-hello
+      - image: fouadhamdi/springboot-sample-app:1.0.1
+        name: springboot-sample-app
         resources: {}
 status: {}
