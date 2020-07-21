@@ -4,3 +4,7 @@ resources:
 - ../../base/deployment.yml
 - ../../base/service.yml
 namespace: fha-dev
+images:
+  - name: fouadhamdi/springboot-sample-app
+    newTag: 1.0.0
+
