@@ -4,3 +4,5 @@ resources:
 - ../../base/deployment.yml
 - ../../base/service.yml
 namespace: fha-prod
+patchesStrategicMerge:
+- env.yml
