@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springboot-sample-app
+  name: springboot-sample-app
+  namespace: fha
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-sample-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springboot-sample-app
+    spec:
+      containers:
+      - image: fouadhamdi/springboot-hello:1.0.0
+        name: springboot-hello
+        resources: {}
+status: {}
