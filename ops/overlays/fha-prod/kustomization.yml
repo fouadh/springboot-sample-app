@@ -6,3 +6,5 @@ resources:
 namespace: fha-prod
 patchesStrategicMerge:
 - env.yml
+commonLabels:
+  env: prod
