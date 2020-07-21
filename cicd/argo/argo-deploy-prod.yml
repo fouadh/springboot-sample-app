@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-sample-app-prod
+spec:
+  destination:
+    namespace: fha-prod
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ops/overlays/fha-prod
+    repoURL: https://github.com/fouadh/springboot-sample-app.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
