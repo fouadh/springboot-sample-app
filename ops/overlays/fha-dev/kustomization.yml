@@ -6,5 +6,5 @@ resources:
 namespace: fha-dev
 images:
   - name: fouadhamdi/springboot-sample-app
-    newTag: 1.0.0
+    newTag: 1.0.1
 
