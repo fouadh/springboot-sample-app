@@ -3,15 +3,13 @@ kind: Pipeline
 metadata:
   name: build-pipeline
 spec:
-#  params:
-#    - name: repo-url
-#      type: string
-#      description: the git repository URL to clone from.
-#    - name: revision
-#      type: string
-#      description: the git revision to clone.
-#    - name: image
-#      description: reference of the image to build
+  params:
+    - name: repo-url
+      type: string
+      description: the git repository URL to clone from.
+    - name: revision
+      type: string
+      description: the git revision to clone.
   workspaces:
     - name: shared-workspace
       description: This workspace will receive the cloned git repo and be passed to the next Task.
@@ -25,11 +23,9 @@ spec:
           workspace: shared-workspace
       params:
         - name: url
-          value: https://github.com/fouadh/springboot-sample-app.git
-#          value: \$(params.repo-url)
+          value: $(params.repo-url)
         - name: revision
-          value: master
-#          value: \$(params.revision)
+          value: $(params.revision)
         - name: deleteExisting
           value: "true"
     - name: build-app
@@ -45,14 +41,4 @@ spec:
       params:
         - name: GOALS
           value: [ "package" ]
-#    - name: build-image
-#      taskRef:
-#        name: kaniko
-#      runAfter:
-#        - build-app
-#      workspaces:
-#        - name: source
-#          workspace: shared-workspace
-#      params:
-#        - name: IMAGE
-#          value: $(params.image)
+

@@ -1,0 +1,32 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: build-trigger-template
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: build-pipeline-run-
+      spec:
+        pipelineRef:
+          name: build-pipeline
+        workspaces:
+          - name: shared-workspace
+            persistentvolumeclaim:
+              claimName: tekton-workspace-pvc
+          - name: maven-settings
+            emptyDir: {}
+        params:
+          - name: repo-url
+            value: $(params.REPO_URL)
+          - name: revision
+            value: $(params.REVISION)
+        serviceAccountName: build-bot
+  params:
+    - name: REPO_URL
+      description: The Git repository url to build and deploy.
+    - name: REVISION
+      description: The Git revision to build and deploy.
+    - name: IMAGE
+      description: Name and tag of the Docker container in the Deployment.
