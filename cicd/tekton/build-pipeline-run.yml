@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: build-pipeline-run
+spec:
+  pipelineRef:
+    name: build-pipeline
+  workspaces:
+    - name: maven-settings
+      emptyDir: {}
+    - name: shared-workspace
+      persistentvolumeclaim:
+        claimName: tekton-workspace-pvc
+#  params:
+#    - name: repo-url
+#      value: https://github.com/fouadh/springboot-sample-app.git
+#    - name: revision
+#      value: master
+  serviceAccountName: build-bot
